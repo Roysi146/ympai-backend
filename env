@@ -26,6 +26,20 @@
 # app.forceGlobalSecureRequests = false
 # app.CSPEnabled = false
 
+# --------------------------------------------------------------------
+# PENGATURAN CORS (Catatan Penting Tim!)
+# --------------------------------------------------------------------
+# Variabel di bawah ini digunakan di file app/Filters/Cors.php.
+# Jika dibiarkan kosong/dikomentari, sistem otomatis mengunci CORS 
+# ke domain produksi secara bawaan (https://ympai.org).
+#
+# UNTUK DEVELOPMENT LOKAL: Buka komentar (hapus tanda #) di bawah ini:
+# CORS_ALLOWED_ORIGIN = *
+#
+# UNTUK PRODUKSI SERVER: Buka komentar dan ubah nilainya menjadi 
+# URL domain Front-End kita (misal: https://frontend-kita.com).
+# CORS_ALLOWED_ORIGIN = https://frontend-kita.com
+
 #--------------------------------------------------------------------
 # DATABASE
 #--------------------------------------------------------------------
