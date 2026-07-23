@@ -32,6 +32,19 @@ class CreateAssessmentQuestionTable extends Migration
                 'type'       => 'INT',
                 'constraint' => 11,
             ],
+            'is_active' => [
+                'type'       => 'TINYINT',
+                'constraint' => 1,
+                'default'    => 1,
+            ],
+            'created_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+            ],
+            'updated_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+            ],
         ]);
 
         $this->forge->addKey('id_soal', true);

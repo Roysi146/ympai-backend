@@ -44,7 +44,16 @@ class CreateAssessmentResultTable extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => 30,
             ],
+            'rule_version' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 10,
+                'default'    => 'v1',
+            ],
             'created_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+            ],
+            'updated_at' => [
                 'type' => 'DATETIME',
                 'null' => true,
             ],

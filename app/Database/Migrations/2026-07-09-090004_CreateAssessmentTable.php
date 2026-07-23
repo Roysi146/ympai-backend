@@ -20,8 +20,8 @@ class CreateAssessmentTable extends Migration
                 'constraint' => 100,
             ],
             'usia' => [
-                'type'       => 'VARCHAR',
-                'constraint' => 20,
+                'type'     => 'TINYINT',
+                'unsigned' => true,
             ],
             'gender' => [
                 'type'       => 'ENUM',
@@ -32,17 +32,23 @@ class CreateAssessmentTable extends Migration
                 'constraint' => 100,
                 'null'       => true,
             ],
-            'wilayah' => [
-                'type'       => 'VARCHAR',
-                'constraint' => 100,
+            'id_wilayah' => [
+                'type'       => 'INT',
+                'constraint' => 11,
+                'unsigned'   => true,
             ],
             'created_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+            ],
+            'updated_at' => [
                 'type' => 'DATETIME',
                 'null' => true,
             ],
         ]);
 
         $this->forge->addKey('id_assessment', true);
+        $this->forge->addForeignKey('id_wilayah', 'wilayah', 'id_wilayah', 'CASCADE', 'RESTRICT');
         $this->forge->createTable('assessment');
     }
 

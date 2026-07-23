@@ -15,7 +15,7 @@ class CreateKaderTable extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'id_admin' => [
+            'created_by' => [
                 'type'       => 'INT',
                 'constraint' => 11,
                 'unsigned'   => true,
@@ -24,9 +24,10 @@ class CreateKaderTable extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => 100,
             ],
-            'wilayah' => [
-                'type'       => 'VARCHAR',
-                'constraint' => 100,
+            'id_wilayah' => [
+                'type'       => 'INT',
+                'constraint' => 11,
+                'unsigned'   => true,
             ],
             'status_aktif' => [
                 'type'       => 'ENUM',
@@ -37,10 +38,15 @@ class CreateKaderTable extends Migration
                 'type' => 'DATETIME',
                 'null' => true,
             ],
+            'updated_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+            ],
         ]);
 
         $this->forge->addKey('id_kader', true);
-        $this->forge->addForeignKey('id_admin', 'admin', 'id_admin', 'CASCADE', 'RESTRICT');
+        $this->forge->addForeignKey('created_by', 'admin', 'id_admin', 'CASCADE', 'RESTRICT');
+        $this->forge->addForeignKey('id_wilayah', 'wilayah', 'id_wilayah', 'CASCADE', 'RESTRICT');
         $this->forge->createTable('kader');
     }
 

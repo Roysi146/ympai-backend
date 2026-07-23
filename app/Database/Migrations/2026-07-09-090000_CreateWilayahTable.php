@@ -4,33 +4,20 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateAdminTable extends Migration
+class CreateWilayahTable extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-            'id_admin' => [
+            'id_wilayah' => [
                 'type'           => 'INT',
                 'constraint'     => 11,
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'nama_admin' => [
+            'nama_wilayah' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 100,
-            ],
-            'username' => [
-                'type'       => 'VARCHAR',
-                'constraint' => 50,
-            ],
-            'password' => [
-                'type'       => 'VARCHAR',
-                'constraint' => 255,
-            ],
-            'role' => [
-                'type'       => 'ENUM',
-                'constraint' => ['superadmin', 'admin'],
-                'default'    => 'admin',
             ],
             'created_at' => [
                 'type' => 'DATETIME',
@@ -42,13 +29,12 @@ class CreateAdminTable extends Migration
             ],
         ]);
 
-        $this->forge->addKey('id_admin', true);
-        $this->forge->addUniqueKey('username');
-        $this->forge->createTable('admin');
+        $this->forge->addKey('id_wilayah', true);
+        $this->forge->createTable('wilayah');
     }
 
     public function down()
     {
-        $this->forge->dropTable('admin');
+        $this->forge->dropTable('wilayah');
     }
 }

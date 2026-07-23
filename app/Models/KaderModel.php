@@ -13,26 +13,32 @@ class KaderModel extends Model
     protected $useSoftDeletes   = false;
 
     protected $allowedFields = [
-        'id_admin',
+        'created_by',
         'nama',
-        'wilayah',
+        'id_wilayah',
         'status_aktif',
     ];
 
     protected $useTimestamps = true;
     protected $createdField  = 'created_at';
-    protected $updatedField  = '';
+    protected $updatedField  = 'updated_at';
 
     protected $validationRules = [
+        'created_by'   => 'required|is_natural_no_zero',
         'nama'         => 'required|max_length[100]',
-        'wilayah'      => 'required|max_length[100]',
+        'id_wilayah'   => 'required|is_natural_no_zero',
         'status_aktif' => 'permit_empty|in_list[Aktif,Non-aktif]',
     ];
 
-    public function getAktifByWilayah(): array
+    // Ambil kader aktif saja, dengan nama wilayah (join) - berguna untuk dashboard peta
+    public function getAktifDenganWilayah(): array
     {
-        return $this->where('status_aktif', 'Aktif')
-            ->orderBy('wilayah', 'ASC')
-            ->findAll();
+        return $this->db->table('kader k')
+            ->select('k.*, w.nama_wilayah')
+            ->join('wilayah w', 'k.id_wilayah = w.id_wilayah')
+            ->where('k.status_aktif', 'Aktif')
+            ->orderBy('w.nama_wilayah', 'ASC')
+            ->get()
+            ->getResultArray();
     }
 }

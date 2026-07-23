@@ -20,6 +20,11 @@ class CreateParentSchoolProgramTable extends Migration
                 'constraint' => 11,
                 'unsigned'   => true,
             ],
+            'id_wilayah' => [
+                'type'       => 'INT',
+                'constraint' => 11,
+                'unsigned'   => true,
+            ],
             'tujuan' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
@@ -36,10 +41,15 @@ class CreateParentSchoolProgramTable extends Migration
                 'type' => 'DATETIME',
                 'null' => true,
             ],
+            'updated_at' => [
+                'type' => 'DATETIME',
+                'null' => true,
+            ],
         ]);
 
         $this->forge->addKey('id_program', true);
         $this->forge->addForeignKey('id_kader', 'kader', 'id_kader', 'CASCADE', 'RESTRICT');
+        $this->forge->addForeignKey('id_wilayah', 'wilayah', 'id_wilayah', 'CASCADE', 'RESTRICT');
         $this->forge->createTable('parent_school_program');
     }
 
